@@ -1,0 +1,46 @@
+{
+  "Colors": [
+    [255, 0, 0],
+    [0, 255, 0],
+    [0, 0, 255],
+    [255, 255, 0],
+    [0, 255, 255],
+    [255, 0, 255],
+    [128, 0, 128],
+    [255, 128, 128]
+  ],
+  "unit_id": 1,
+  "Y_range": [0, 20],
+  "PLC_Reading_Address": {
+    "AI00": 0,
+    "AI06": [6, " / 1000"],
+    "AI07": [7, 0, 1, 2]
+  },
+  "PLC_Reading_Address2": {
+    "AI00": [0, 0, 1, 2]
+  },
+  "PLC_Reading_Address1": {
+    "AI00": [14874, 2],
+    "AI01": [14890, 2],
+    "AI02": [14906, 2],
+    "AI03": [14922, 2]
+  },
+  "Channel_names": [
+    "имя 1 из json",
+    "имя 2 из json",
+    "имя 3 из json",
+    "имя 4 из json"
+  ],
+  "default_connect_to": "TCP/IP",
+  "RTU_settings": {
+    "COM": "COM4",
+    "baudrate": 38400,
+    "stopbits": 1,
+    "bytesize": 8,
+    "parity": "Even"
+  },
+  "TCP/IP_settings":{
+    "ip": "172.16.195.40",
+    "ip_port": 502
+  }
+}

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>320</width>
+    <height>240</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>320</width>
+    <height>240</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>320</width>
+    <height>240</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>About</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>6</y>
+      <width>141</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Segoe UI</family>
+      <pointsize>12</pointsize>
+      <weight>50</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Help manual</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="plainTextEdit">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>30</y>
+      <width>301</width>
+      <height>171</height>
+     </rect>
+    </property>
+    <property name="verticalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOn</enum>
+    </property>
+    <property name="horizontalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOff</enum>
+    </property>
+    <property name="plainText">
+     <string>To use this program, you must have either a modbus (RTU or TCP) connection or the plot files.
+------
+How to use?
+#1 Recording.
+Preparing: go to settings.json in current directory and change the PLC_reading_address dictionary which contains ports that will be read. You can load your own settings file with File -&gt; Load settings.
+Step 1. Set up a connection with Modbus -&gt; Connect to
+Step 2. Check if the status bar in the bottom of the window is green and click on Modbus -&gt; Start reading.
+Name the channels before step 3 to show what each channel is related to (use the empty fields in the left sidebar). Those names will be saved with the logs.
+Step 3. After recording everything you need, click on File -&gt; Save logs and plots (.csv or .xlsx). The logs will save too.
+
+#2 Reading the records
+To read the records, use the File -&gt; Open from file. After that the current connection will be terminated for file reading.
+------
+Menu file:
+load settings: load a json file with connection settings, path to the file is defined by the user.
+save logs and plots:
+■ csv: creates files that store the plot and the logs in current directory
+■ xlsx: creates files that store the plot and the logs in current directory.
+Note that *.xlsx files always load very long
+------
+Menu modbus:
+■ connect to: creates a connection
+■ disconnect: stops current connection
+■ start/stop: similar to play/pause, these options can't be used when there's no connection and don't affect it
+-----
+Inputs:
+■ auto scale: only used when recording; automatically moves the plot along x axis and sets the view range depending on value of &quot;time range&quot;
+■ time range: sets the view range of the plot
+■ delay:sets the delay between requests (in ms)</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>320</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

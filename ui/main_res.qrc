@@ -1,0 +1,12 @@
+<RCC>
+  <qresource prefix="ico">
+    <file>start.png</file>
+    <file>stop.png</file>
+    <file>open.png</file>
+    <file>disconnect.png</file>
+    <file>connect.png</file>
+    <file>load_settings.png</file>
+    <file>write_settings.png</file>
+    <file>save.png</file>
+  </qresource>
+</RCC>

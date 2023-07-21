@@ -1,0 +1,39 @@
+﻿To use this program, you must have either a modbus (RTU or TCP) connection or the plot files.
+------
+How to use?
+#1 Recording.
+Preparing: go to settings.json file which is placed in the current directory and change the PLC_reading_address dictionary which contains input registers that will be read. You can load your own settings file with File -> Load settings.
+
+Registers' formats:
+■ register_address (int) -> for simple int numbers stored in registers
+■ [address, count] -> for floats stored in 2 or 4 registers
+■ [address, evaluate_string] -> for converting int into float (sometimes float is stored in 1 register as int and the value needs to be divided by 1000), for example you can type "/1000" to divide by 1000
+■ [address, bit, value_if_0, value_if_1] -> for boolean values stored as one bit of a register value; bits are enumerated from 0 right-to-left; use value_if_0 and value_if_1 to separate the graphs (example: if DI00 is on (0, 1) on Y axis, then DI01  should be on (1, 2) or something like that so they don't cover each other while having the same value)
+
+Step 1. Set up a connection with Modbus -> Connect to
+Step 2. Check if the status bar in the bottom of the window is green and click on Modbus -> Start reading.
+Name the inputs before step 3 to show what each of them is related to (use the empty fields in the left sidebar). Those names will be saved with the logs.
+Step 3. After recording everything you need, click on File -> Save logs and plots (.csv or .xlsx). The logs will save too.
+
+#2 Reading the records
+To read the records, use the File -> Open from file. After that the current connection will be terminated for file reading.
+------
+Menu file:
+load settings: load a json file with connection settings, path to the file is defined by the user.
+save logs and plots:
+■ csv: creates files that store the plot and the logs, path to the files is defined by the user.
+■ xlsx: creates files that store the plot and the logs, path to the files is defined by the user.
+Note that *.xlsx files always load much longer so they aren't importable
+------
+Menu modbus:
+■ connect to: creates a connection
+■ disconnect: stops current connection
+■ start/stop: similar to play/pause, these options can't be used when there's no connection and don't affect it
+-----
+Inputs:
+■ auto scroll: only used when recording; automatically moves the plot along the x axis and sets the view range depending on value of "time range"
+■ view range: sets the view range of the plot (hours : minutes : seconds)
+■ delay:sets the delay between requests
+■ time (from): is only available in file reading mode, it's used to make navigation easier in couple with view range field
+-----
+Current values tab shows the latest values of each graph but it also can get them for any X if the file reading mode is on.
