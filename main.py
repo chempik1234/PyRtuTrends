@@ -26,7 +26,7 @@ current_time = ''
 def h_v_decode(string: str):
     if not isinstance(string, str) or len(string) <= 1 or not string[1:].isdigit() or not string[0].isalpha():
         raise ValueError
-    res, mod, num_str, a = 0, None, string[1:], len(string) - 1
+    res, mod, num_str, a = 0, 10, string[1:], len(string) - 1
     if string[0].lower() == 'v':
         mod = 8
     elif string[0].lower() == 'h':
@@ -39,11 +39,15 @@ def h_v_decode(string: str):
 def load_settings(path):
     with open(path, 'r', encoding="UTF-8") as file:
         json_data = json.load(file)
-        global PLC_Reading_Address, RTU_settings, TCP_IP_settings, CHANNEL_NAMES, COLORS, Y_RANGE
+        global PLC_Reading_Address, RTU_settings, TCP_IP_settings, CHANNEL_NAMES, COLORS, Y_RANGE, UNIT_ID
         PLC_Reading_Address, RTU_settings, TCP_IP_settings, CHANNEL_NAMES, COLORS, Y_RANGE, UNIT_ID =\
-            json_data["PLC_Reading_Address"], json_data["RTU_settings"],\
-            json_data["TCP/IP_settings"], json_data.get("Channel_names"), json_data.get("Colors"),\
+            json_data["PLC_Reading_Address"], json_data.get("RTU_settings"),\
+            json_data.get("TCP/IP_settings"), json_data.get("Channel_names"), json_data.get("Colors"),\
             json_data.get("Y_range"), json_data.get("unit_id")
+        if not RTU_settings:
+            RTU_settings = {}
+        if not TCP_IP_settings:
+            TCP_IP_settings = {}
         if not isinstance(UNIT_ID, int) or (isinstance(UNIT_ID, int) and UNIT_ID < 1):
             UNIT_ID = 1
         if not COLORS:
@@ -57,8 +61,7 @@ def load_settings(path):
                 item[0] = h_v_decode(item[0])
             elif isinstance(item, str):
                 PLC_Reading_Address[key] = h_v_decode(item)
-        return PLC_Reading_Address, json_data["RTU_settings"],\
-            json_data["TCP/IP_settings"], CHANNEL_NAMES, COLORS, Y_RANGE, UNIT_ID
+        return PLC_Reading_Address, RTU_settings, TCP_IP_settings, CHANNEL_NAMES, COLORS, Y_RANGE, UNIT_ID
 
 
 load_settings("./settings.json")
@@ -1060,9 +1063,10 @@ class ConnectForm(QMainWindow):
 
     def update_ports(self):
         self.widget.com_field.clear()
-        ports = [str(i).split()[0] for i in serial.tools.list_ports.comports()]
-        self.widget.com_field.addItems(ports)
-        if RTU_settings.get("COM") not in ports:
+        available_ports = [str(i).split()[0] for i in serial.tools.list_ports.comports()]
+        self.widget.com_field.addItems(available_ports)
+        port_from_settings = RTU_settings.get("COM")
+        if port_from_settings is not None and port_from_settings not in available_ports:
             msb = QMessageBox()
             msb.setWindowTitle("COM-port connection")
             msb.setText("Port {0} is NOT available at the moment!".format(RTU_settings.get("COM")))
