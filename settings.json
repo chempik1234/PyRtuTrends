@@ -16,14 +16,14 @@
     "AI06": [6, " / 1000"],
     "AI07": [7, 0, 1, 2]
   },
-  "PLC_Reading_Address2": {
+  "Example: discretes": {
     "AI00": [0, 0, 1, 2]
   },
-  "PLC_Reading_Address1": {
+  "Example: float": {
     "AI00": [14874, 2],
     "AI01": [14890, 2],
-    "AI02": [14906, 2],
-    "AI03": [14922, 2]
+    "AI02": ["V35032", 4],
+    "AI03": ["H3A2A", 4]
   },
   "Channel_names": [
     "имя 1 из json",
