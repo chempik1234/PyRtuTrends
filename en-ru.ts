@@ -210,6 +210,11 @@ Current values tab shows the latest values of each graph but it also can get the
         <translation>Текущие значения</translation>
     </message>
     <message>
+        <location filename="main.py" line="962"/>
+        <source>Image</source>
+        <translation>Изображение</translation>
+    </message>
+    <message>
         <location filename="main.py" line="1015"/>
         <source>Get from time:</source>
         <translation>Получить из времени:</translation>
