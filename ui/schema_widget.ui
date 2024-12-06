@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>761</width>
+    <height>491</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>761</width>
+    <height>491</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>761</width>
+    <height>491</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QLCDNumber {
+	font-size: 36px;
+	color: white;
+	font-weight: bold;
+	background: qlineargradient(spread:reflect, x1:0, y1:1, x2:0, y2:0.483, stop:0 rgba(19, 115, 38, 255), stop:0.51 rgba(52, 52, 52, 255));
+	padding: 2px;
+}</string>
+  </property>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>761</width>
+     <height>491</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="schema_res.qrc">:/image/schema.png</pixmap>
+   </property>
+  </widget>
+  <widget class="QLCDNumber" name="channel0">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>90</y>
+     <width>191</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="smallDecimalPoint">
+    <bool>false</bool>
+   </property>
+   <property name="digitCount">
+    <number>5</number>
+   </property>
+   <property name="mode">
+    <enum>QLCDNumber::Dec</enum>
+   </property>
+   <property name="segmentStyle">
+    <enum>QLCDNumber::Flat</enum>
+   </property>
+  </widget>
+ </widget>
+ <resources>
+  <include location="schema_res.qrc"/>
+ </resources>
+ <connections/>
+</ui>
