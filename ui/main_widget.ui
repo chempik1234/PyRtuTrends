@@ -311,8 +311,11 @@
        </item>
        <item>
         <widget class="QTabWidget" name="tabWidget">
+         <property name="tabPosition">
+          <enum>QTabWidget::North</enum>
+         </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>2</number>
          </property>
          <widget class="QWidget" name="tab_plot">
           <attribute name="title">
@@ -369,6 +372,11 @@
             </item>
            </layout>
           </widget>
+         </widget>
+         <widget class="QWidget" name="tab_image">
+          <attribute name="title">
+           <string>Image</string>
+          </attribute>
          </widget>
         </widget>
        </item>

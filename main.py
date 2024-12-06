@@ -3,12 +3,12 @@ from ui import main_res
 import sys, json, pyqtgraph, numpy, csv, xlsxwriter, openpyxl
 from pyqtgraph.exporters import *
 from datetime import datetime
-from PyQt5 import uic
+from PyQt5 import uic, QtSvg
 from PyQt5.QtWidgets import QWidget, QComboBox, QApplication, QPushButton, QListWidgetItem, QMainWindow, \
     QLabel, QLineEdit, QFileDialog, QVBoxLayout, QCheckBox, QMessageBox, QAction, QDateTimeEdit, \
-    QScrollArea, QGroupBox, QProgressBar, QTimeEdit, QSplashScreen, QGridLayout, QHBoxLayout, QLCDNumber, QFormLayout
+    QScrollArea, QGroupBox, QProgressBar, QTimeEdit, QSplashScreen, QGridLayout, QHBoxLayout, QLCDNumber, QFormLayout, QFrame
 from PyQt5.QtCore import QTimer, QEvent, Qt, QDateTime, QTranslator
-from PyQt5.QtGui import QIcon, QResizeEvent, QPixmap
+from PyQt5.QtGui import QIcon, QResizeEvent, QPixmap, QPainter
 from time import time
 from pymodbus.constants import Endian
 from pymodbus.payload import BinaryPayloadDecoder
@@ -166,6 +166,32 @@ class MainWidget(QMainWindow):
         # self.horizontalLayout.addWidget(self.plot_widget)
         self.times = []
         self.times_xs = []
+        '''##############################################################################
+        СОЗДАНИЕ СХЕМЫ ###############################################################'''
+        # self.schema_widget = QLabel()
+        # renderer =  QtSvg.QSvgRenderer('schema.svg')
+        # painter = QPainter(self.schema_widget)
+        # # painter.begin()
+        # renderer.render(painter)
+        # self.schema_frame = QFrame(self)
+        # layout_just_for_tab_with_schema = QHBoxLayout(self)
+        # layout_just_for_tab_with_schema.addWidget(self.schema_frame)
+        # self.tab_image.setLayout(layout_just_for_tab_with_schema)
+
+        self.schema_widget = QFrame()
+
+        self.schema_image_widget = QLabel(self.schema_widget)
+        schema_pixmap =  QPixmap('schema.png')
+        self.schema_image_widget.setPixmap(schema_pixmap)
+
+        layout_just_for_tab_with_schema = QHBoxLayout(self)
+        layout_just_for_tab_with_schema.addWidget(self.schema_widget)
+
+        QLabel("destroyer", self.schema_widget)
+
+        # self.schema_image_widget.setLayout(schema_layout)
+        self.tab_image.setLayout(layout_just_for_tab_with_schema)
+
         '''#####################################'''
         self.start_time, self.datetime_start = time(), QDateTime.currentDateTime().toLocalTime()  # datetime.now()
         self.start_secs_epoch = self.datetime_start.toSecsSinceEpoch()
@@ -1023,6 +1049,7 @@ class MainWidget(QMainWindow):
                                      str(self.valid_responses_amount))
         self.tabWidget.setTabText(0, _translate("MainWidget", "Plot"))
         self.tabWidget.setTabText(1, _translate("MainWidget", "Current values"))
+        self.tabWidget.setTabText(2, _translate("MainWidget", "Image"))
         self.get_from_time_label.setText(_translate("MainWidget", "Get from time:"))
 
 
